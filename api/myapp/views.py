@@ -5,7 +5,7 @@ from .models import DataEntry
 from .serializers import DataEntrySerializer
 
 class DataView(APIView):
-    def get(self):
+    def get(self, request):
         queryset = DataEntry.objects.all()
         serializer = DataEntrySerializer(queryset, many=True)
         return Response(serializer.data)
