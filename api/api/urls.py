@@ -20,5 +20,5 @@ from myapp.views import DataView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('data/', DataView.as_view(), name='data_endpoint'),
+    path('api/', DataView.as_view(), name='data_endpoint'),
 ]
