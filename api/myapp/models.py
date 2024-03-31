@@ -7,3 +7,4 @@ class DataEntry(models.Model):
     valor = models.DecimalField(max_digits=10, decimal_places=2)
     data_criacao = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
+    pendente = models.BooleanField()
