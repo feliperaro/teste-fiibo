@@ -3,8 +3,11 @@ gvars.py - Module for managing global variables.
 """
 import os
 
-project_folder = os.getcwd()
-resources_folder = fr"{project_folder}\resources"
-tests_folder = fr"{resources_folder}\tests"
-xlsx_test_path = fr"{tests_folder}\test.xlsx"
-modelo_xlsx_path = fr"{resources_folder}\Modelo_Dados.xlsx"
+API_URL = "http://127.0.0.1:8000/api/"
+PROJECT_DIR = os.getcwd()
+RESOURCES_DIR = fr"{PROJECT_DIR}\resources"
+TESTS_DIR = fr"{RESOURCES_DIR}\tests"
+EXCEL_FILENAME_TEST = "test.xlsx"
+EXCEL_FILEPATH_TEST = fr"{TESTS_DIR}\{EXCEL_FILENAME_TEST}"
+EXCEL_FILENAME = "Modelo_Dados.xlsx"
+EXCEL_FILEPATH = fr"{RESOURCES_DIR}\{EXCEL_FILENAME}"
