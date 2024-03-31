@@ -20,19 +20,19 @@ def send_data_to_api(data, api_url):
 
     Returns:
         1: Success.
-        -1: Invalid data format (data must be a dictionary).
-        -2: Invalid API URL format (must start with "http").
+        -1: Invalid data type (data must be a dictionary).
+        -2: Invalid API URL type (api_url must a string").
         -3: Network error during request.
         -4: API error (non-200 status code).
     """
     print("data", data)
     if not isinstance(data, dict):
-        print("Invalid data format. Data must be a dictionary.")
+        print("Invalid data type. data must be a dictionary.")
         return -1
 
     print("api_url", api_url)
     if not isinstance(api_url, str):
-        print("Invalid API URL format.")
+        print("Invalid api_url type.")
         return -2
 
     try:
