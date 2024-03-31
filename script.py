@@ -4,8 +4,11 @@ Script Challenge:
     Send data to API
     Store data in database
 """
+from datetime import datetime
 from excel import read_xlsx
 import gvars
+import os
+import shutil
 import requests
 
 def send_data_to_api(data, api_url):
@@ -22,10 +25,12 @@ def send_data_to_api(data, api_url):
         -3: Network error during request.
         -4: API error (non-200 status code).
     """
+    print("data", data)
     if not isinstance(data, dict):
         print("Invalid data format. Data must be a dictionary.")
         return -1
 
+    print("api_url", api_url)
     if not isinstance(api_url, str):
         print("Invalid API URL format.")
         return -2
@@ -48,6 +53,9 @@ def main():
     """Main function to read Excel data and send it to the API."""
     api_url = gvars.API_URL
     file_path = gvars.EXCEL_FILEPATH
+    if not os.path.exists(file_path):
+        print(f"file_path '{file_path}' does not exist")
+        return 0
 
     xlsx_data = read_xlsx(file_path)
     if not xlsx_data:
@@ -59,6 +67,21 @@ def main():
         return_send_data_to_api = send_data_to_api(data, api_url)
         if return_send_data_to_api != 1:
             print("error sending data to api!")
+
+    try:
+        filename = os.path.basename(file_path)
+        current_time = datetime.now().strftime("%Y%m%d%H%M%S")
+
+        output_folder = gvars.OUTPUT_DIR
+        new_folder_path = os.path.join(output_folder, current_time)
+        if not os.path.exists(new_folder_path):
+            os.makedirs(new_folder_path)
+
+        new_file_path = os.path.join(new_folder_path, filename)
+        print("new_file_path", new_file_path)
+        shutil.move(file_path, new_file_path)
+    except Exception as error:
+        print("Error moving file to output directory", error)
 
     return 1
 
