@@ -67,7 +67,7 @@ def test_read_xlsx():
             "expected_result": [
                 {
                     "notas": "value1",
-                    "competência": "value2", 
+                    "competencia": "value2", 
                     "status": "value3", 
                     "valor": 10.5, 
                     "data_criacao": "2023-01-01"
