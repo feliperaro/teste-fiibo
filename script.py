@@ -31,12 +31,12 @@ def send_data_to_api(data, api_url):
         return -2
 
     try:
-        response = requests.post(api_url, json=data)
+        response = requests.post(api_url, json=data, timeout=60)
     except requests.exceptions.RequestException as e:
         print("Network error:", e)
         return -3
 
-    if response.status_code != 200:
+    if response.status_code != 201:
         print("API error:", response.status_code, response.text)
         return -4
 
@@ -47,22 +47,18 @@ def send_data_to_api(data, api_url):
 def main():
     """Main function to read Excel data and send it to the API."""
     api_url = gvars.API_URL
-    print("api_url", api_url)
-
-    file_path = gvars.EXCEL_FILENAME
-    print("file_path", file_path)
+    file_path = gvars.EXCEL_FILEPATH
 
     xlsx_data = read_xlsx(file_path)
-    print("xlsx_data", xlsx_data)
     if not xlsx_data:
         print("No data found in the Excel file.")
         return 0
 
     for data in xlsx_data:
         data["pendente"] = True
-        print("data", data)
         return_send_data_to_api = send_data_to_api(data, api_url)
-        print("return_send_data_to_api", return_send_data_to_api)
+        if return_send_data_to_api != 1:
+            print("error sending data to api!")
 
     return 1
 
