@@ -49,7 +49,7 @@ def test_read_xlsx():
     """
     Test read_xlsx() function
     """
-    path = gvars.xlsx_test_path
+    path = gvars.EXCEL_FILEPATH_TEST
     test_cases = [
         {
             "test_case_name": "Invalid file format",
@@ -121,7 +121,7 @@ def test_write_to_xlsx():
     """
     Test write_to_xlsx() function
     """
-    path = gvars.xlsx_test_path
+    path = gvars.EXCEL_FILEPATH_TEST
     test_data = [
         {
             "notas": "value1",
