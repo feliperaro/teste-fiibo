@@ -43,7 +43,6 @@ This project includes a script that automates the process of reading an Excel fi
 1. Place your Excel file in the `input` folder.
 2. Run the script:
     ```bash
-    cd..
     python script.py
     ```
 3. After processing, the Excel file will be moved to the `output` folder.
