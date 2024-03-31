@@ -36,10 +36,10 @@ def read_xlsx(path: str) -> list[dict]:
 
         data.append({
             "notas": row[0].value,
-            "competência": row[1].value,
+            "competencia": row[1].value,
             "status": row[2].value,
             "valor": row[3].value,
-            "data_criacao": row[4].value,
+            "data_criacao": str(row[4].value),
         })
 
     return data
