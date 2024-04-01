@@ -3,6 +3,8 @@ excel.py - A Python module for working with Excel files (.xlsx).
 
 This module provides functions to write data to and read data from Excel files.
 It uses the openpyxl library for handling Excel workbooks.
+
+TODO: Add support for reading and writing CSV files
 """
 import os
 import openpyxl

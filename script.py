@@ -51,7 +51,11 @@ def send_data_to_api(data, api_url):
 
 
 def main():
-    """Main function to read Excel data and send it to the API."""
+    """
+    Main function to read Excel data and send it to the API.
+    TODO: Read CSV files from input folder
+    TODO: Write RPA result to output file 
+    """
     api_url = gvars.API_URL
 
     input_folder = gvars.INPUT_DIR
