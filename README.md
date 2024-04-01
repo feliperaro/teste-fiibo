@@ -24,7 +24,25 @@ This project includes a script that automates the process of reading an Excel fi
     cd teste-fiibo
     ```
 
-3. Install the requirements:
+3. Create a virtual environment (if you haven't already):
+
+    ```bash
+    python -m venv venv
+    ```
+
+4. Activate the virtual environment:
+    On Windows:
+        ```
+        venv\Scripts\activate
+        ```
+
+    On macOS and Linux:
+        
+        ```
+        source venv/bin/activate
+        ```
+
+5. Install the requirements:
 
     ```bash
     pip install -r requirements.txt
