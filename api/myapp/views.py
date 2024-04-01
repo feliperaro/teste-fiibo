@@ -3,8 +3,11 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import DataEntry
 from .serializers import DataEntrySerializer
+from rest_framework.renderers import JSONRenderer
 
 class DataView(APIView):
+    renderer_classes = [JSONRenderer]
+
     def get(self, request):
         queryset = DataEntry.objects.all()
         serializer = DataEntrySerializer(queryset, many=True)
