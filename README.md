@@ -32,6 +32,7 @@ This project includes a script that automates the process of reading an Excel fi
 
 4. Activate the virtual environment:
     On Windows:
+   
         ```
         venv\Scripts\activate
         ```
@@ -42,7 +43,7 @@ This project includes a script that automates the process of reading an Excel fi
         source venv/bin/activate
         ```
 
-5. Install the requirements:
+6. Install the requirements:
 
     ```bash
     pip install -r requirements.txt
