@@ -55,6 +55,7 @@ def main():
     Main function to read Excel data and send it to the API.
     TODO: Read CSV files from input folder
     TODO: Write RPA result to output file 
+    TODO: Send errors to errors folder
     """
     api_url = gvars.API_URL
 
