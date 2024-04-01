@@ -1,82 +1,82 @@
 # Teste Fiibo
 
-## Description
+## Descrição
 
-This project includes a script that automates the process of reading an Excel file and sending this data to an API. The API is a Django project located in the `api` folder.
+Este projeto inclui um script que automatiza o processo de leitura de um arquivo Excel e o envio desses dados para uma API. A API é um projeto Django localizado na pasta `api`.
 
-## Getting Started
+## Primeiros Passos
 
-### Prerequisites
+### Pré-requisitos
 
 - Python 3.x
 
-### Installation
+### Instalação
 
-1. Clone the repository:
+1. Clone o repositório:
 
     ```bash
     git clone https://github.com/feliperaro/teste-fiibo.git
     ```
 
-2. Navigate to the project directory:
+2. Navegue até o diretório do projeto:
 
     ```bash
     cd teste-fiibo
     ```
 
-3. Create a virtual environment (if you haven't already):
+3. Crie um ambiente virtual (se ainda não o tiver feito):
 
     ```bash
     python -m venv venv
     ```
 
-4. Activate the virtual environment:
-    On Windows:
+4. Ative o ambiente virtual:
+    No Windows:
         ```
         venv\Scripts\activate
         ```
 
-    On macOS and Linux:
+    No macOS e no Linux:
         ```
         source venv/bin/activate
         ```
 
-6. Install the requirements:
+6. Instale os requisitos:
 
     ```bash
     pip install -r requirements.txt
     ```
 
-## Usage
+## Uso
 
-### Running the API
+### Executando a API
 
-1. Navigate to the `api` directory:
+1. Navegue até o diretório `api`:
 
     ```bash
     cd api
     ```
 
-2. Apply any necessary database migrations:
+2. Aplique quaisquer migrações de banco de dados necessárias:
 
     ```bash
     python manage.py makemigrations
     python manage.py migrate
     ```
 
-3. Run the Django server:
+3. Inicie o servidor Django:
 
     ```bash
     python manage.py runserver
     ```
 
-### Running the Script
+### Executando o Script
 
-1. Place your Excel file in the `input` folder.
-2. Run the script:
+1. Coloque seu arquivo Excel na pasta `input`.
+2. Execute o script:
 
     ```bash
     python script.py
     ```
 
-3. After processing, the Excel file will be moved to the `output` folder.
+3. Após o processamento, o arquivo Excel será movido para a pasta `output`.
