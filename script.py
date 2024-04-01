@@ -6,6 +6,7 @@ Script Challenge:
 """
 from datetime import datetime
 from excel import read_xlsx
+import glob
 import gvars
 import os
 import shutil
@@ -52,36 +53,53 @@ def send_data_to_api(data, api_url):
 def main():
     """Main function to read Excel data and send it to the API."""
     api_url = gvars.API_URL
-    input_file = gvars.EXCEL_FILEPATH
-    if not os.path.exists(input_file):
-        print(f"input_file '{input_file}' does not exist")
+
+    input_folder = gvars.INPUT_DIR
+    if not os.path.exists(input_folder):
+        print(f"input_folder '{input_folder}' does not exist")
         return 0
-
-    xlsx_data = read_xlsx(input_file)
-    if not xlsx_data:
-        print("No data found in the Excel file.")
+    
+    input_files = glob.glob(os.path.join(input_folder, '*.xlsx'))
+    if not input_files or len(input_files) == 0:
+        print(f"input_folder has no files")
         return 0
+    
+    for input_file in input_files:
+        print(f"input_file '{input_file}'")
 
-    for data in xlsx_data:
-        data["pendente"] = True
-        return_send_data_to_api = send_data_to_api(data, api_url)
-        if return_send_data_to_api != 1:
-            print("error sending data to api!")
+        xlsx_data = read_xlsx(input_file)
+        if isinstance(xlsx_data, int) and xlsx_data < 0:
+            print("error reading input_file", input_file)
+            continue
 
-    try:
-        filename = os.path.basename(input_file)
-        current_time = datetime.now().strftime("%Y%m%d%H%M%S")
+        if not xlsx_data:
+            print("No data found in the Excel file.")
+            continue
 
-        output_folder = gvars.OUTPUT_DIR
-        new_folder_path = os.path.join(output_folder, current_time)
-        if not os.path.exists(new_folder_path):
-            os.makedirs(new_folder_path)
+        for data in xlsx_data:
+            data["pendente"] = True
+            return_send_data_to_api = send_data_to_api(data, api_url)
+            if return_send_data_to_api == 1:
+                data["rpa"] = "success"
+                print("success sending data to api!")
+            else:
+                print("error sending data to api!")
+                data["rpa"] = "error"
+            
+        try:
+            filename = os.path.basename(input_file)
+            current_time = datetime.now().strftime("%Y%m%d%H%M%S")
 
-        new_file_path = os.path.join(new_folder_path, filename)
-        print("new_file_path", new_file_path)
-        shutil.move(input_file, new_file_path)
-    except Exception as error:
-        print("Error moving file to output directory", error)
+            output_folder = gvars.OUTPUT_DIR
+            new_folder_path = os.path.join(output_folder, current_time)
+            if not os.path.exists(new_folder_path):
+                os.makedirs(new_folder_path)
+
+            new_file_path = os.path.join(new_folder_path, filename)
+            print("new_file_path", new_file_path)
+            shutil.move(input_file, new_file_path)
+        except Exception as error:
+                print("Error moving file to output directory", error)
 
     return 1
 
